@@ -1,6 +1,7 @@
 package com.example.demo01.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/video")
 public class VideoController {
     @RequestMapping("list")
+//    @PostMapping("list")
     public Object list(){
         Map<String,String> map = new HashMap<>();
         map.put("1","面试专题课程");
