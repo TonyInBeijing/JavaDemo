@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 视频控制器
+ * 视频控制器(RestController)
  */
 @RestController
 @RequestMapping("/api/v1/video")
