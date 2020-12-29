@@ -1,12 +1,14 @@
 package com.example.demo01.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.example.demo01.domain.Video;
+import com.example.demo01.service.VideoService;
+import com.example.demo01.utils.JsonData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * 视频控制器(RestController)
@@ -14,12 +16,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/video")
 public class VideoController {
-    @RequestMapping("list")
-//    @PostMapping("list")
-    public Object list(){
-        Map<String,String> map = new HashMap<>();
-        map.put("1","面试专题课程");
-        map.put("2","SpringCloud微服务课程");
-        return map;
+    @Autowired
+    private VideoService videoService;
+
+    //    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @GetMapping(value = "list")
+    public Object list() {
+        List<Video> list = videoService.listVideo();
+        return JsonData.buildSuccess(list);
     }
 }
