@@ -14,7 +14,7 @@ import java.util.List;
  * 视频控制器(RestController)
  */
 @RestController
-@RequestMapping("/api/v1/video")
+@RequestMapping("/api/v1/pub/video")
 public class VideoController {
     @Autowired
     private VideoService videoService;
