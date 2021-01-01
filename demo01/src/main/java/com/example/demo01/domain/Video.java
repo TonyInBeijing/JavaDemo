@@ -1,5 +1,9 @@
 package com.example.demo01.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,7 +12,10 @@ public class Video implements Serializable {
     private String title;
     private String summary;
     private int price;
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("cover_img")
     private String coverImg;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
     public Video() {

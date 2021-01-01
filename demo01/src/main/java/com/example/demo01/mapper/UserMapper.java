@@ -3,7 +3,9 @@ package com.example.demo01.mapper;
 import com.example.demo01.domain.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -25,6 +27,12 @@ public class UserMapper {
             return user;
         }
         return null;
+    }
+
+    public List<User> userList() {
+        List<User> users = new ArrayList<>();
+        users.addAll(userMap.values());
+        return users;
     }
 
 }
