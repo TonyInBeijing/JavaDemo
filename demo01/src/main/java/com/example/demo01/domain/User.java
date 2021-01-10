@@ -1,9 +1,11 @@
 package com.example.demo01.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class User {
     private int id;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String username;
     @JsonIgnore
     private String pwd;
