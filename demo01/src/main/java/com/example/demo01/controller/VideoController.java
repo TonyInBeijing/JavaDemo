@@ -29,6 +29,7 @@ public class VideoController {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(list);
         System.out.println(jsonStr);
+        System.out.println(1);
 //        将字符串反序列化成对象
         List<Video> videoList = objectMapper.readValue(jsonStr,List.class);
         return JsonData.buildSuccess(videoList);
