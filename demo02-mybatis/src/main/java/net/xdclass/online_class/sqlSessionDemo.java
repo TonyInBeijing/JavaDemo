@@ -22,9 +22,9 @@ public class sqlSessionDemo {
         // 获取session
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
-//            Video video = videoMapper.selectById(44);
-            List<Video> videoList = videoMapper.selectList();
-            System.out.println(videoList.toString());
+            Video video = videoMapper.selectById(44);
+//            List<Video> videoList = videoMapper.selectList();
+            System.out.println(video.toString());
         }
     }
 }

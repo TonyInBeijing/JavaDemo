@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface VideoMapper {
-    Video selectById(@Param("video_id") int Id);
+    Video selectById(int videoId);
 
     // 查询全部视频列表
     @Select("select * from video")
