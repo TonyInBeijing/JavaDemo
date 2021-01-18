@@ -15,5 +15,8 @@ mybatis使用接口动态代理
     <select id="selectById" resultType="net.xdclass.online_class.domain.Video">
         select * from video where id = #{videoId}
     </select>
+    <select id="selectByPointAndTitleLike" resultType="net.xdclass.online_class.domain.Video" >
+        select * from video where point=#{point} and title like concat('%',#{title},'%')
+    </select>
 
 </mapper>
