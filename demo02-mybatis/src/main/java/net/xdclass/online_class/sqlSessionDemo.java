@@ -24,13 +24,16 @@ public class sqlSessionDemo {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
             Video video =  new Video();
-            video.setTitle("小滴课堂面试专题900道");
+            video.setTitle("小滴课堂面试专题300道");
             video.setCoverImg("xdclass.net/aaa.png");
             video.setPoint(9.4);
             video.setCreateTime(new Date());
             video.setPrice(9900);
             video.setSummary("这个是面试专题概要");
-            videoMapper.add(video);
+            int row = videoMapper.add(video);
+            sqlSession.commit();
+            System.out.println(row);
+            System.out.println(video.getId());
         }
     }
 }

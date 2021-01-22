@@ -23,9 +23,9 @@ mybatis使用接口动态代理
         select count(1) from video;
     </select>
 
-    <insert id="add" parameterType="net.xdclass.online_class.domain.Video">
-        INSERT INTO `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
-        VALUES
+    <insert id="add" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
+        values
       (#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},#{price,jdbcType=INTEGER},
        #{createTime,jdbcType=TIMESTAMP},#{point,jdbcType=DOUBLE});
     </insert>
