@@ -15,4 +15,12 @@ public interface VideoMapper {
 
     // 根据评分和标题模糊查询
     Video selectByPointAndTitleLike(@Param("title") String title, @Param("point") double point);
+
+    /**
+     * 新增一条数据记录
+     * @return
+     */
+    int add(Video video);
+
+    int selectVideoCount();
 }
