@@ -30,9 +30,8 @@ public class sqlSessionDemo {
             video.setCreateTime(new Date());
             video.setPrice(9900);
             video.setSummary("这个是面试专题概要");
-            int row = videoMapper.add(video);
+            videoMapper.add(video);
             sqlSession.commit();
-            System.out.println(row);
             System.out.println(video.getId());
         }
     }
