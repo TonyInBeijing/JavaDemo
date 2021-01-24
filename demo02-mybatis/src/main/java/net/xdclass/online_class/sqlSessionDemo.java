@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-
 public class sqlSessionDemo {
     public static void main(String[] args) throws IOException {
         String resource = "config/mybatis-config.xml";
