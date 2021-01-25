@@ -22,5 +22,13 @@ public interface VideoMapper {
      */
     int add(Video video);
 
+    /**
+     * 批量插入
+     * @param videoList
+     * @return
+     */
+    int addBatch(List<Video> videoList);
+
     int selectVideoCount();
+
 }

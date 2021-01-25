@@ -23,11 +23,22 @@ mybatis使用接口动态代理
         select count(1) from video;
     </select>
 
-    <insert id="add" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert id="add" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         insert into `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
         values
       (#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},#{price,jdbcType=INTEGER},
        #{createTime,jdbcType=TIMESTAMP},#{point,jdbcType=DOUBLE});
     </insert>
+<!--批量插入-->
+    <insert id="addBatch" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
+        values
+        <foreach collection="list" item="video" index="index" separator=",">
+            (#{video.title,jdbcType=VARCHAR},#{video.summary,jdbcType=VARCHAR},#{video.coverImg,jdbcType=VARCHAR},#{video.price,jdbcType=INTEGER},
+            #{video.createTime,jdbcType=TIMESTAMP},#{video.point,jdbcType=DOUBLE})
+        </foreach>
+    </insert>
+
 
 </mapper>

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,16 +23,29 @@ public class sqlSessionDemo {
         // 获取session
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
-            Video video =  new Video();
-            video.setTitle("小滴课堂面试专题300道");
-            video.setCoverImg("xdclass.net/aaa.png");
-            video.setPoint(9.4);
-            video.setCreateTime(new Date());
-            video.setPrice(9900);
-            video.setSummary("这个是面试专题概要");
-            videoMapper.add(video);
+            Video video1 = new Video();
+            video1.setTitle("小滴课堂面试专题300道");
+            video1.setCoverImg("xdclass.net/aaa.png");
+            video1.setPoint(9.4);
+            video1.setCreateTime(new Date());
+            video1.setPrice(9900);
+            video1.setSummary("这个是面试专题概要");
+
+            Video video2 = new Video();
+            video2.setTitle("小滴课堂面试专题400道");
+            video2.setCoverImg("xdclass.net/bbb.png");
+            video2.setPoint(8.0);
+            video2.setCreateTime(new Date());
+            video2.setPrice(2900);
+            video2.setSummary("这个是面试专题概要2");
+
+            List<Video> list = new ArrayList<>();
+            list.add(video1);
+            list.add(video2);
+            int rows = videoMapper.addBatch(list);
             sqlSession.commit();
-            System.out.println(video.getId());
+            System.out.println(rows);
+            System.out.println(list.toString());
         }
     }
 }
