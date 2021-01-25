@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-
 public class sqlSessionDemo {
     public static void main(String[] args) throws IOException {
         String resource = "config/mybatis-config.xml";
@@ -30,9 +29,8 @@ public class sqlSessionDemo {
             video.setCreateTime(new Date());
             video.setPrice(9900);
             video.setSummary("这个是面试专题概要");
-            int row = videoMapper.add(video);
+            videoMapper.add(video);
             sqlSession.commit();
-            System.out.println(row);
             System.out.println(video.getId());
         }
     }
