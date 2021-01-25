@@ -30,8 +30,9 @@ mybatis使用接口动态代理
       (#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},#{price,jdbcType=INTEGER},
        #{createTime,jdbcType=TIMESTAMP},#{point,jdbcType=DOUBLE});
     </insert>
-<!--批量插入-->
-    <insert id="addBatch" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    <!--批量插入-->
+    <insert id="addBatch" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
         insert into `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
         values
         <foreach collection="list" item="video" index="index" separator=",">
@@ -40,7 +41,7 @@ mybatis使用接口动态代理
         </foreach>
     </insert>
 
-<!--    更新-->
+    <!--    更新-->
     <update id="updateVideo" parameterType="net.xdclass.online_class.domain.Video">
         update video
         set
@@ -50,22 +51,28 @@ mybatis使用接口动态代理
         id=#{id,jdbcType=INTEGER}
     </update>
 
-<!--    选择性更新-->
+    <!--    选择性更新-->
     <update id="updateVideoSelective" parameterType="net.xdclass.online_class.domain.Video">
         update video
         <trim suffixOverrides=",">
-        set
-        <if test="title != null">
-            title = #{title,jdbcType=VARCHAR},
-        </if>
-        <if test="summary !=null">
-            summary = #{summary,jdbcType=VARCHAR}
-        </if>
+            set
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="summary !=null">
+                summary = #{summary,jdbcType=VARCHAR},
+            </if>
+            <if test="price != 0">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
         </trim>
         WHERE
         id=#{id,jdbcType=INTEGER}
     </update>
-
+    <!--    删除-->
+    <delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">
+        delete from video where create_time <![CDATA[>]]> #{createTime} and price <![CDATA[<=]]> #{price};
+    </delete>
 
 
 </mapper>

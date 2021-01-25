@@ -9,9 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class sqlSessionDemo {
     public static void main(String[] args) throws IOException {
@@ -39,13 +37,20 @@ public class sqlSessionDemo {
             video2.setPrice(2900);
             video2.setSummary("这个是面试专题概要2");
 
-            Video video3 = new Video();
-            video3.setTitle("测试视频1");
-//            video3.setSummary("这是测试视频3");
-            video3.setId(66);
-            videoMapper.updateVideoSelective(video3);
+//            Video video3 = new Video();
+//            video3.setTitle("测试视频1");
+////            video3.setSummary("这是测试视频3");
+//            video3.setId(66);
+//            videoMapper.updateVideoSelective(video3);
+//            sqlSession.commit();
+//            System.out.println(video3.toString());
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("createTime", "2021-01-11 09:33:20");
+            map.put("price", 1000);
+            int rows = videoMapper.deleteByCreateTimeAndPrice(map);
             sqlSession.commit();
-            System.out.println(video3.toString());
+            System.out.println(rows);
 
 //            List<Video> list = new ArrayList<>();
 //            list.add(video1);
