@@ -40,5 +40,32 @@ mybatis使用接口动态代理
         </foreach>
     </insert>
 
+<!--    更新-->
+    <update id="updateVideo" parameterType="net.xdclass.online_class.domain.Video">
+        update video
+        set
+        title = #{title,jdbcType=VARCHAR},
+        summary = #{summary,jdbcType=VARCHAR}
+        WHERE
+        id=#{id,jdbcType=INTEGER}
+    </update>
+
+<!--    选择性更新-->
+    <update id="updateVideoSelective" parameterType="net.xdclass.online_class.domain.Video">
+        update video
+        <trim suffixOverrides=",">
+        set
+        <if test="title != null">
+            title = #{title,jdbcType=VARCHAR},
+        </if>
+        <if test="summary !=null">
+            summary = #{summary,jdbcType=VARCHAR}
+        </if>
+        </trim>
+        WHERE
+        id=#{id,jdbcType=INTEGER}
+    </update>
+
+
 
 </mapper>

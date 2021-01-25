@@ -39,13 +39,21 @@ public class sqlSessionDemo {
             video2.setPrice(2900);
             video2.setSummary("这个是面试专题概要2");
 
-            List<Video> list = new ArrayList<>();
-            list.add(video1);
-            list.add(video2);
-            int rows = videoMapper.addBatch(list);
+            Video video3 = new Video();
+            video3.setTitle("测试视频1");
+//            video3.setSummary("这是测试视频3");
+            video3.setId(66);
+            videoMapper.updateVideoSelective(video3);
             sqlSession.commit();
-            System.out.println(rows);
-            System.out.println(list.toString());
+            System.out.println(video3.toString());
+
+//            List<Video> list = new ArrayList<>();
+//            list.add(video1);
+//            list.add(video2);
+//            int rows = videoMapper.addBatch(list);
+//            sqlSession.commit();
+//            System.out.println(rows);
+//            System.out.println(list.toString());
         }
     }
 }
