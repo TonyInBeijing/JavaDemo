@@ -12,8 +12,28 @@ mybatis使用接口动态代理
     id： 当前mapper下需要唯一
     resultType： sql查询结果集的封装
     -->
-    <select id="selectById" parameterType="java.lang.Integer" resultType="net.xdclass.online_class.domain.Video">
-        select * from video where id = #{videoId,jdbcType=INTEGER}
+    <sql id="base_video_field">
+        id,title,summary,cover_img
+    </sql>
+
+    <resultMap id="videoResultMap" type="Video">
+<!--        id:指定查询列的唯一标识-->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+<!--        column:数据库字段的名称-->
+<!--        property:pojo的名称-->
+        <result column="video_title" property="title" jdbcType="VARCHAR"></result>
+        <result column="summary" property="summary" jdbcType="VARCHAR"></result>
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="selectBaseFieldByIdWithResultMap" resultMap="videoResultMap">
+        select id,title as video_title,summary,cover_img from video where id = #{video_id}
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="Video">
+        select
+        <include refid="base_video_field"/>
+        from video where id = #{videoId,jdbcType=INTEGER}
     </select>
     <select id="selectByPointAndTitleLike" resultType="net.xdclass.online_class.domain.Video">
         select * from video where point=#{point,jdbcType=DOUBLE} and title like concat('%',#{title,jdbcType=VARCHAR},'%');
@@ -23,7 +43,8 @@ mybatis使用接口动态代理
         select count(1) from video;
     </select>
 
-    <insert id="add" parameterType="net.xdclass.online_class.domain.Video" useGeneratedKeys="true" keyProperty="id"
+    <!--    插入-->
+    <insert id="add" parameterType="Video" useGeneratedKeys="true" keyProperty="id"
             keyColumn="id">
         insert into `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
         values
