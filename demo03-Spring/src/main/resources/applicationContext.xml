@@ -3,7 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="video" class="net.xdclass.sp.domain.Video">
+<!--    singleton:单例，效率高（默认）-->
+<!--    prototype：多例，开销大-->
+    <bean id="video" class="net.xdclass.sp.domain.Video" scope="singleton">
         <property name="id" value="9"/>
         <property name="title" value="Spring 5.x课程"/>
     </bean>
