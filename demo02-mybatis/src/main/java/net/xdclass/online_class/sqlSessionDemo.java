@@ -2,6 +2,7 @@ package net.xdclass.online_class;
 
 import net.xdclass.online_class.dao.VideoMapper;
 import net.xdclass.online_class.dao.VideoOrderMapper;
+import net.xdclass.online_class.domain.User;
 import net.xdclass.online_class.domain.Video;
 import net.xdclass.online_class.domain.VideoOrder;
 import org.apache.ibatis.io.Resources;
@@ -72,9 +73,12 @@ public class sqlSessionDemo {
              */
 //            Video video2 = videoMapper.selectById(66);
 //            System.out.println(video2.toString());
-            // resultMap association关联查询
-            List<VideoOrder> videoOrders = videoOrderMapper.queryVideoOrderList();
-            System.out.println(videoOrders.toString());
+            // resultMap association一对一关联查询
+//            List<VideoOrder> videoOrders = videoOrderMapper.queryVideoOrderList();
+//            System.out.println(videoOrders.toString());
+            // resultMap collection一对多关联查询
+            List<User> userList = videoOrderMapper.queryUserOrder();
+            System.out.println(userList);
         }
     }
 }
