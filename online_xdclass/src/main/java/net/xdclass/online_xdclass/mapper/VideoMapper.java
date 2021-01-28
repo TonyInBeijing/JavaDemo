@@ -1,6 +1,7 @@
 package net.xdclass.online_xdclass.mapper;
 
 import net.xdclass.online_xdclass.domain.Video;
+import net.xdclass.online_xdclass.domain.VideoBanner;
 
 import java.util.List;
 
@@ -10,4 +11,8 @@ public interface VideoMapper {
      * @return
      */
     List<Video> listVideo();
+    /**
+     * 查询首页轮播图列表
+     */
+    List<VideoBanner> listVideoBanner();
 }
