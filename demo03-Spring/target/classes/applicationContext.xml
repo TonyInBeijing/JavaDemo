@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="video" class="net.xdclass.sp.domain.Video" scope="prototype">
+        <property name="id" value="9"/>
+        <property name="title" value="Spring 5.x课程"/>
+    </bean>
+    <bean id="videoService" class="net.xdclass.sp.service.VideoService"></bean>
+    <bean id="videoOrder" class="net.xdclass.sp.domain.VideoOrder">
+        <property name="id" value="8"/>
+        <property name="outTradeNo" value="123123123132"/>
+        <property name="video" ref="video"/>
+    </bean>
+</beans>
