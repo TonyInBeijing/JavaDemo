@@ -1,6 +1,7 @@
 package net.xdclass.online_xdclass.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 章节对象
@@ -11,6 +12,16 @@ public class Chapter {
     private String title;
     private Integer ordered;
     private Date createTime;
+
+    private List<Episode> episodeList;
+
+    public List<Episode> getEpisodeList() {
+        return episodeList;
+    }
+
+    public void setEpisodeList(List<Episode> episodeList) {
+        this.episodeList = episodeList;
+    }
 
     public Integer getId() {
         return id;
