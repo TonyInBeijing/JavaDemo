@@ -17,11 +17,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
-     * 用户注册
-     * @param userInfo
-     * @return
-     */
     @PostMapping("register")
     public JsonData register(@RequestBody Map<String, String> userInfo) {
         User user = userService.findByPhone(userInfo.get("phone"));
