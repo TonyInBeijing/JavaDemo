@@ -1,9 +1,10 @@
 package net.xdclass.online_xdclass.service.impl;
 
-import net.xdclass.online_xdclass.domain.User;
+import net.xdclass.online_xdclass.model.entity.User;
 import net.xdclass.online_xdclass.mapper.UserMapper;
 import net.xdclass.online_xdclass.service.UserService;
 import net.xdclass.online_xdclass.utils.CommonUtils;
+import net.xdclass.online_xdclass.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User findByPhone(String phone){
+    public User findByPhone(String phone) {
         User user = userMapper.findByPhone(phone);
         return user;
     }
@@ -31,6 +32,17 @@ public class UserServiceImpl implements UserService {
             return -1;
         }
 
+    }
+
+    @Override
+    public String findByPhoneAndPwd(String phone, String pwd) {
+        User user = userMapper.findByPhoneAndPwd(phone, CommonUtils.MD5(pwd));
+        if (user == null) {
+            return null;
+        } else {
+            String token = JWTUtils.geneJsonWebToken(user);
+            return token;
+        }
     }
 
     /**
@@ -58,7 +70,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 放在CDN上的随机头像
      */
-    private static final String [] headImg = {
+    private static final String[] headImg = {
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/12.jpeg",
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/11.jpeg",
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/13.jpeg",
@@ -68,9 +80,10 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 生成随机头像
+     *
      * @return
      */
-    private String getRandomImg(){
+    private String getRandomImg() {
         int size = headImg.length;
         Random random = new Random();
         int index = random.nextInt(size);

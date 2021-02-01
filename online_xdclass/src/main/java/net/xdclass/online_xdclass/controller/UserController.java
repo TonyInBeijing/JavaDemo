@@ -1,6 +1,7 @@
 package net.xdclass.online_xdclass.controller;
 
-import net.xdclass.online_xdclass.domain.User;
+import net.xdclass.online_xdclass.model.entity.User;
+import net.xdclass.online_xdclass.model.request.LoginRequest;
 import net.xdclass.online_xdclass.service.UserService;
 import net.xdclass.online_xdclass.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class UserController {
         } else {
             return JsonData.buildError(-1, "手机号已注册");
         }
+    }
+
+    /**
+     * 登录接口
+     *
+     * @param loginRequest
+     * @return
+     */
+    @PostMapping("login")
+    public JsonData login(@RequestBody LoginRequest loginRequest) {
+        String token = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
+        return token == null ? JsonData.buildError("登录失败，账号密码错误") : JsonData.buildSuccess(token);
     }
 }
