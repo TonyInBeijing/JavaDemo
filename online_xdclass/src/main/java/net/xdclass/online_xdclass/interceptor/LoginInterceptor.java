@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  */
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         try {
             String accessToken = request.getHeader("token");
             if (accessToken == null) {
@@ -38,6 +38,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        sendJsonMessage(response, JsonData.buildError("登录过期，重新登录"));
         return false;
     }
 
@@ -50,7 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public static void sendJsonMessage(HttpServletResponse response, Object object) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            response.setContentType("application/json; charset-utf-8");
+            response.setContentType("application/json; charset=utf-8");
             PrintWriter printWriter = response.getWriter();
             printWriter.print(objectMapper.writeValueAsString(object));
             response.flushBuffer();

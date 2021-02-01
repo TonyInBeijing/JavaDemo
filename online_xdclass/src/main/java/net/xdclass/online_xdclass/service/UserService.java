@@ -18,9 +18,18 @@ public interface UserService {
 
     /**
      * 登录
+     *
      * @param phone
      * @param pwd
      * @return
      */
     String findByPhoneAndPwd(String phone, String pwd);
+
+    /**
+     * 根据用户ID查询用户信息
+     *
+     * @param userId
+     * @return
+     */
+    User findByUserId(Integer userId);
 }
