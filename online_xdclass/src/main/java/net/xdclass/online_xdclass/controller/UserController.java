@@ -30,6 +30,5 @@ public class UserController {
         } else {
             return JsonData.buildError(-1, "手机号已注册");
         }
-
     }
 }

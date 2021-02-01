@@ -56,11 +56,18 @@
             <artifactId>guava</artifactId>
             <version>19.0</version>
         </dependency>
-<!--        热部署相关-->
+        <!--        热部署相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!-- JWT相关 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
         </dependency>
 
     </dependencies>
